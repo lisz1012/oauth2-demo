@@ -23,10 +23,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 		super.configure(security);
 	}
 
+	// Postman获取Token的时候，CLientID、Callback URL等字段要跟这里面设置的对上
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("client")
-			   .redirectUris("192.168.1.102:81/order")
+			   .redirectUris("http://192.168.1.102:8080/order")
 			   .scopes("read", "write")
 			   .secret("secret")
 			   .authorizedGrantTypes("authorization_code", "password", "implicit", "client_credentials");
